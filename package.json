@@ -1,0 +1,42 @@
+{
+  "name": "PlsWork",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.4.2",
+    "jest-react-native": "^18.0.0",
+    "jsdom": "^11.12.0",
+    "jsdom-global": "^3.0.2"
+  },
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest"
+  },
+  "jest": {
+    "testURL": "http://localhost/",
+    "testEnvironment": "node",
+    "preset": "react-native",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "dependencies": {
+    "babel-preset-react-native": "^2.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-to-json": "^3.3.4",
+    "jest-serializer": "^23.0.1",
+    "jest-serializer-enzyme": "^1.0.0",
+    "react": "16.3.1",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.4.2",
+    "react-native": "~0.55.2",
+    "react-native-cli": "^2.0.1",
+    "react-native-popup-menu": "^0.14.0",
+    "react-test-renderer": "^16.4.2",
+    "save-dev": "^2.0.0"
+  }
+}
