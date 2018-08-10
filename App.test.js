@@ -4,37 +4,41 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-import { shallow, mount, render, renderer } from 'enzyme';
-import React from 'react';
-import { Button } from 'react-native';
-import App from './App';
+import { shallow, mount, render } from 'enzyme';
+import renderer from 'react-test-renderer';
 
-/*
-it('renders without crashing', () => {
-  const rendered = renderer(<App />);
-  expect(rendered).toBeTruthy();
-});
-*/
+import React from 'react';
+import App from './App';
 
 const wrapper = mount(<App />);
 
-it('should render button', () => {
-  expect(wrapper.find('#button').length).toBe(1);
+describe('Rendering app', () => {
+  test('renders correctly', () => {
+    const tree = renderer.create(<App />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });
 
-it('should change the text', () => {
-  const changeButton = wrapper.find('#change');
-  const text = wrapper.find('#text').first().render().text();
+describe('Button tests', () => {
 
-  expect(text).toBe("Change me");
-  //console.warn(wrapper.state().textValue);
-  expect(wrapper.state().textValue).toBe("Change me");
+  it('should render button', () => {
+    expect(wrapper.find('#button').length).toBe(1);
+  });
 
-  changeButton.props().onPress();
-  wrapper.setState({});
+  it('should change the text', () => {
+    const changeButton = wrapper.find('#change');
+    const text = wrapper.find('#text').first().render().text();
 
-  const newtext = wrapper.find('#text').first().render().text();
-  console.warn(wrapper.state().textValue);
-  //expect(wrapper.state().textValue).toBe("You've changed");
-  expect(newtext).toBe("You've changed");
-})
+    expect(text).toBe("Change me");
+    //console.warn(wrapper.state().textValue);
+    expect(wrapper.state().textValue).toBe("Change me");
+
+    changeButton.props().onPress();
+    wrapper.setState({});
+
+    const newtext = wrapper.find('#text').first().render().text();
+    console.warn(wrapper.state().textValue);
+    //expect(wrapper.state().textValue).toBe("You've changed");
+    expect(newtext).toBe("You've changed");
+  });
+});
